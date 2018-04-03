@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.rightBox{
+			position: absolute;
+			display: none;
+			width: 100px;
+			background-color: red;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<!-- <input type="text">-->
+
+<div class="rightBox" id="rightBox">
+	<div>aaa</div>
+	<div>bbb</div>
+	<div>ccc</div>
+</div>
+
+
+ <script type="text/javascript">
+	
+	//获取键盘按键的键盘值
+	document.onkeydown = function(ev){
+		var oEvent = ev || window.event;
+		alert(oEvent.keyCode);
+	}
+
+	 //禁止鼠标右键事件
+	document.oncontextmenu = function(ev){
+		var oEvent = ev || window.event;
+		return false;
+	}
+
+	//禁止键盘除了数字和删除键的其他按键事件
+	document.onkeydown = function(ev){
+		var oEvent = ev || window.event;
+		if (oEvent.keyCode != 8 && (oEvent.keyCode < 48 || oEvent.keyCode > 57)) {
+			return false;
+		}
+	}
+
+	//禁止默认的右键事件和实现自定义的默认事件
+	var rightBox = document.getElementById('rightBox');
+	document.oncontextmenu = function(ev){
+		var oEvent = ev || window.event;
+
+		rightBox.style.display = "block";
+
+		rightBox.style.left = oEvent.clientX + 'px';
+		rightBox.style.top = oEvent.clientY + 'px';
+		return false;
+	}
+
+	document.onclick = function(ev){
+		var oEvent = ev || window.event;
+		rightBox.style.display = "none";
+	}
+</script>
+</body>
+</html>

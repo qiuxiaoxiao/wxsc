@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>div跟随鼠标移动事件</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.div1{
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+<div class="div1" id="div1"></div>
+
+<script type="text/javascript">
+
+	document.onmousemove = function(ev){
+		var div1 = document.getElementById('div1');
+		var oEvent = ev || window.event;
+		console.log(oEvent.clientX + ',' + oEvent.clientY);
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+		div1.style.top = oEvent.clientY + scrollTop + 'px';
+		div1.style.left = oEvent.clientX + scrollLeft +'px';
+	}
+</script>
+</body>
+</html>
